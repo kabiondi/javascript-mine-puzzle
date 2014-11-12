@@ -6,7 +6,7 @@ var minePuzzleGame = function (dimension,x,y) {
 
 	var selectSquare = function (x,y) {
 		var result = '';
-		var squareSelected = minePuzzleBoard[y][x]; // switch x and y
+		var squareSelected = minePuzzleBoard[x][y]; // switch x and y
 		squareSelected.isCrawled=true;
 		isGameOver();
 		console.log('line 12 '+x+','+y);
@@ -15,10 +15,13 @@ var minePuzzleGame = function (dimension,x,y) {
 		}
 		console.log(squareSelected)
 		if (squareSelected.isBomb===false) {
-			result = squareSelected.bombCount;
+			if (squareSelected.bombCount!=0) {
+				result = squareSelected.bombCount;
+			}
+			else recurseZeros(x,y);
 		}
 		//console.log('result is '+result);
-		//console.log(minePuzzleBoard);
+		console.log(minePuzzleBoard);
 		return result;
 	}
 
@@ -41,7 +44,7 @@ var minePuzzleGame = function (dimension,x,y) {
 
 	var recurseZeros = function (x,y) {
 		var checkSquare = minePuzzleBoard[x][y];
-
+		console.log('recurse '+checkSquare);
 	}
 
 	// var SquareData = {
