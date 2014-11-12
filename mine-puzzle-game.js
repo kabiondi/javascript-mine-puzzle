@@ -1,27 +1,32 @@
 var minePuzzleBoard;
-var size; // used for showBoard - this needs to go away
+//var size; // used for showBoard - this needs to go away
+var recurseArray;
 
 var minePuzzleGame = function (dimension,x,y) {
-	size = dimension; // used for showBoard - this needs to go away
+	//size = dimension; // used for showBoard - this needs to go away
 
 	var selectSquare = function (x,y) {
-		var result = '';
+		var result = [];
 		var squareSelected = minePuzzleBoard[x][y]; // switch x and y
-		squareSelected.isCrawled=true;
-		isGameOver();
+		
 		console.log('line 12 '+x+','+y);
 		if (squareSelected.isBomb===true) {
-			result = squareSelected.isBomb;
+			result.push(squareSelected);
 		}
 		console.log(squareSelected)
 		if (squareSelected.isBomb===false) {
 			if (squareSelected.bombCount!=0) {
-				result = squareSelected.bombCount;
+				result.push(squareSelected);
 			}
-			else recurseZeros(x,y);
+			else {
+				recurseArray = [];
+				result = recurseZeros(x,y);
+			}
 		}
 		//console.log('result is '+result);
 		console.log(minePuzzleBoard);
+		squareSelected.isCrawled=true;
+		isGameOver();
 		return result;
 	}
 
@@ -43,8 +48,25 @@ var minePuzzleGame = function (dimension,x,y) {
 	}
 
 	var recurseZeros = function (x,y) {
+
+		if (x>dimension-1 || x<0) {return}
+		if (y>dimension-1 || y<0) {return}
+
 		var checkSquare = minePuzzleBoard[x][y];
-		console.log('recurse '+checkSquare);
+
+		if (checkSquare.isCrawled) {return}
+	
+		checkSquare.isCrawled=true;
+
+		if (checkSquare.bombCount===0) {
+			console.log('coords6: '+x+''+y);
+			recurseZeros(x+1,y);
+			recurseZeros(x,y-1);
+			recurseZeros(x-1,y);
+			recurseZeros(x,y+1);
+		}
+		recurseArray.push(checkSquare);
+		return recurseArray;
 	}
 
 	// var SquareData = {
@@ -64,7 +86,7 @@ var minePuzzleGame = function (dimension,x,y) {
 			for (var i=0; i<dimension; i++) {
 				initArray.push([]);
 				for (var j=0; j<dimension; j++) {
-						initArray[i].push({isBomb:false, bombCount:0, isCrawled:false});
+						initArray[i].push({isBomb:false, bombCount:0, isCrawled:false, x:i, y:j});
 				}
 			}
 			// add bombs to the array
@@ -118,18 +140,18 @@ var minePuzzleGame = function (dimension,x,y) {
 
 //==============development
 
-var showBoard = function () {
-	// for development only
-	console.log(minePuzzleBoard);
-	for (var i=size-1; i>=0; i--) { // runs backward to show x-y coordinates correctly
-		var boardRow = [];
-		for (var j=0; j<size; j++) {
-			if (!minePuzzleBoard[i][j].isBomb) {boardRow.push(minePuzzleBoard[i][j].bombCount)}
-			if (minePuzzleBoard[i][j].isBomb) {boardRow.push('o')}
-		}
-	console.log(boardRow);
-	}
-}
+// var showBoard = function () {
+// 	// for development only
+// 	console.log(minePuzzleBoard);
+// 	for (var i=size-1; i>=0; i--) { // runs backward to show x-y coordinates correctly
+// 		var boardRow = [];
+// 		for (var j=0; j<size; j++) {
+// 			if (!minePuzzleBoard[i][j].isBomb) {boardRow.push(minePuzzleBoard[i][j].bombCount)}
+// 			if (minePuzzleBoard[i][j].isBomb) {boardRow.push('o')}
+// 		}
+// 	console.log(boardRow);
+// 	}
+// }
 
 //==============tests
 
