@@ -6,17 +6,16 @@ var minePuzzleGui = function (size) {
 	var placeListener = function (td,size,i,j) {
 		td.addEventListener('click', function () {
 			var revealedTiles = minePuzzleGame(size,i,j);
-			console.log('testing');
 			for (var q=0; q<revealedTiles.length; q++) {
-				console.log('for loop '+q);
 				updateGuiSquare(revealedTiles[q].x,revealedTiles[q].y,revealedTiles[q].bombCount);
 			}
-			//updateGuiSquare(revealedTiles[0].x,revealedTiles[0].y,revealedTiles[0].bombCount);
-		})
+		});
 	}
 
 	var updateGuiSquare = function (x,y,bombCount) {
-		document.getElementById('x'+x+'y'+y).innerHTML=bombCount;
+		var td=document.getElementById('x'+x+'y'+y);
+		td.innerHTML=bombCount;
+		td.setAttribute('class','checked');
 	}
 
 	function makeGui() {

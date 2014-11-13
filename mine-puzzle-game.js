@@ -59,12 +59,12 @@ var minePuzzleGame = function (dimension,x,y) {
 		checkSquare.isCrawled=true;
 
 		if (checkSquare.bombCount===0) {
-			console.log('coords6: '+x+''+y);
-			recurseZeros(x+1,y);
-			recurseZeros(x,y-1);
-			recurseZeros(x-1,y);
-			recurseZeros(x,y+1);
+
+			for (var r=-1; r<=1; r++)
+				for (var s=-1; s<=1; s++)
+					recurseZeros(x+r,y+s);
 		}
+
 		recurseArray.push(checkSquare);
 		return recurseArray;
 	}
@@ -79,7 +79,7 @@ var minePuzzleGame = function (dimension,x,y) {
 
 		var arrayWithBombs = function () {
 			var initArray = [];
-			var bombsToGive = 10;
+			var bombsToGive = 12;
 			var k=0;
 			var firstClick = x+''+y;
 			// make empty array with dimensions
@@ -97,6 +97,7 @@ var minePuzzleGame = function (dimension,x,y) {
 
 				if (initArray[l][m].isBomb===true || firstClick===currentPlace) {continue}
 				initArray[l][m].isBomb=true;
+				initArray[l][m].bombCount='*';
 				k++;
 			}
 			return initArray;
@@ -110,6 +111,7 @@ var minePuzzleGame = function (dimension,x,y) {
 
 				for (var j=0; j<dimension; j++) {
 					counter = 0;
+					if (gameBoard[i][j].isBomb) continue;
 					for (var k=i-1; k<i+2; k++) {
 
 						for (var l=j-1; l<j+2; l++) {
