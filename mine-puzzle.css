@@ -2,11 +2,31 @@ h1 {
 	color: red;
 }
 
-#minePuzzle td {
+.startBtn {
+	color: pink;
+}
+
+#minePuzzle {
+	margin: 10px;
+	margin-color: sienna;
+}
+
+td {
+	margin: 1px;
+	margin-color: sienna;
 	font-size: 1em;
-	color: white;
-	background-color: green;
+	color: brown;
+	background-color: sienna;
 	width: 20px;
 	height: 20px;
 	text-align: center;
+}
+
+.checked {
+	background-color: lightgrey;
+	margin-color: sienna;
+}
+
+.explode {
+	background-color: red;
 }
