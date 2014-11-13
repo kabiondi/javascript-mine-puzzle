@@ -3,11 +3,11 @@ var minePuzzleBoard;
 var recurseArray;
 
 var minePuzzleGame = function (dimension,x,y) {
-	//size = dimension; // used for showBoard - this needs to go away
+	size = dimension;
 
 	var selectSquare = function (x,y) {
 		var result = [];
-		var squareSelected = minePuzzleBoard[x][y]; // switch x and y
+		var squareSelected = minePuzzleBoard[x][y];
 		
 		console.log('line 12 '+x+','+y);
 		if (squareSelected.isBomb===true) {
@@ -32,19 +32,16 @@ var minePuzzleGame = function (dimension,x,y) {
 
 	var isGameOver = function () {
 		var placesNotChecked = 0;
-		for (var i=0; i<dimension; i++) {
-			for (var j=0; j<dimension; j++) {
+		for (var i=0; i<dimension-1; i++) {
+			for (var j=0; j<dimension-1; j++) {
 				var checkSquare = minePuzzleBoard[i][j];
-				if (checkSquare.isBomb===true && checkSquare.isCrawled===true) {
-					alert("BOMB!");
-				}
 				if (checkSquare.isBomb===false && checkSquare.isCrawled===false) {
 					placesNotChecked += 1;
 				}
 			}
 		}
 		//console.log('Safe squares remaining: '+placesNotChecked);
-		if (placesNotChecked===0) alert('YOU WON!');
+		if (placesNotChecked===0) alert('YOU WON! Play again?');
 	}
 
 	var recurseZeros = function (x,y) {

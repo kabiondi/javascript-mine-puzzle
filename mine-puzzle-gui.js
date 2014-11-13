@@ -7,7 +7,10 @@ var minePuzzleGui = function (size) {
 		td.addEventListener('click', function () {
 			var revealedTiles = minePuzzleGame(size,i,j);
 			for (var q=0; q<revealedTiles.length; q++) {
-				updateGuiSquare(revealedTiles[q].x,revealedTiles[q].y,revealedTiles[q].bombCount);
+				if (revealedTiles[q].isBomb && revealedTiles[q].isCrawled) 
+					loseGame();
+				else
+					updateGuiSquare(revealedTiles[q].x,revealedTiles[q].y,revealedTiles[q].bombCount);
 			}
 		});
 	}
@@ -16,6 +19,20 @@ var minePuzzleGui = function (size) {
 		var td=document.getElementById('x'+x+'y'+y);
 		td.innerHTML=bombCount;
 		td.setAttribute('class','checked');
+	}
+
+	var loseGame = function () {
+		var allTiles = minePuzzleBoard;
+		for (var t=0; t<size; t++) {
+			for (var u=0; u<size; u++) {
+				if (allTiles[t][u].isBomb && allTiles[t][u].isCrawled) {
+					var td=document.getElementById('x'+t+'y'+u);
+					td.innerHTML=allTiles[t][u].bombCount;
+					td.setAttribute('class','explode');
+				}
+				else updateGuiSquare(t,u,allTiles[t][u].bombCount);
+			}
+		}
 	}
 
 	function makeGui() {
