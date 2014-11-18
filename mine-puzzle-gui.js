@@ -1,7 +1,7 @@
 // no game rules. GUI only
 
 var minePuzzleGui = function (size) {
-
+	minePuzzleBoard = null;
 
 	var placeListener = function (td,size,i,j) {
 		td.addEventListener('click', function () {
@@ -38,6 +38,12 @@ var minePuzzleGui = function (size) {
 	function makeGui() {
 
 		var minePuzzle = document.getElementById('minePuzzle');
+		if (document.getElementById('gameTable')) {
+			// clear out gameTable if one exists
+			var clearMinePuzzle = document.getElementById('gameTable');
+			clearMinePuzzle.parentNode.removeChild(clearMinePuzzle);	
+		}
+
 
 		var table = document.createElement('table');
 		table.setAttribute('id','gameTable');
