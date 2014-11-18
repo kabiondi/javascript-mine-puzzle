@@ -1,5 +1,4 @@
 var minePuzzleBoard;
-//var size; // used for showBoard - this needs to go away
 var recurseArray;
 
 var minePuzzleGame = function (dimension,x,y) {
@@ -101,7 +100,7 @@ var minePuzzleGame = function (dimension,x,y) {
 		}();
 		
 		var calcNums = function (array) {
-			var gameBoard = array; //gameArray();
+			var gameBoard = array;
 			var counter = 0;
 
 			for (var i=0; i<dimension; i++) {
@@ -134,25 +133,6 @@ var minePuzzleGame = function (dimension,x,y) {
 }
 
 
-
-
-
-//==============development
-
-// var showBoard = function () {
-// 	// for development only
-// 	console.log(minePuzzleBoard);
-// 	for (var i=size-1; i>=0; i--) { // runs backward to show x-y coordinates correctly
-// 		var boardRow = [];
-// 		for (var j=0; j<size; j++) {
-// 			if (!minePuzzleBoard[i][j].isBomb) {boardRow.push(minePuzzleBoard[i][j].bombCount)}
-// 			if (minePuzzleBoard[i][j].isBomb) {boardRow.push('o')}
-// 		}
-// 	console.log(boardRow);
-// 	}
-// }
-
-//==============tests
 
 var assert = function (claim,message) {
 	if (!claim) console.error(message);
