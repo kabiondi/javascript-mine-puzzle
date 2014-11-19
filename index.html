@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Mine Puzzle</title>
+	<title>Mine Puzzle</title>
 
-<script type="text/javascript" src="./mine-puzzle-game.js"></script>
-<script type="text/javascript" src="./mine-puzzle-gui.js"></script>
-<link rel="stylesheet" type="text/css" href="mine-puzzle.css">
+	<script type="text/javascript" src="./mine-puzzle-game.js"></script>
+	<script type="text/javascript" src="./mine-puzzle-gui.js"></script>
+	<link rel="stylesheet" type="text/css" href="mine-puzzle.css">
 </head>
 
 <body>
-<h1>Mine Puzzle!</h1>
-
-<button class"startBtn" onclick="minePuzzleGui(10)">Easy</button>
-<button class"startBtn" onclick="minePuzzleGui(16)">Medium</button>
-<button class"startBtn" onclick="minePuzzleGui(22)">Hard</button>
-
-<div id='minePuzzle'></div>
+	<div class="game-title">
+		<h1>Mine Puzzle</h1>
+	</div>
+	<div class="button-row">
+		<a href="#" class="start-btn" onclick="minePuzzleGui(10)">easy</a>
+		<a href="#" class="start-btn" onclick="minePuzzleGui(16)">medium</a>
+		<a href="#" class="start-btn" onclick="minePuzzleGui(22)">hard</a>
+	</div>
+	<div id='minePuzzle'></div>
 </body>
 </html>
