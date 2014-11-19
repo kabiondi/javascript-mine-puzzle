@@ -5,34 +5,47 @@ var minePuzzleGui = function (size) {
 
 	var placeListener = function (td,size,i,j) {
 		td.addEventListener('click', function () {
+
 			var revealedTiles = minePuzzleGame(size,i,j);
+			if (revealedTiles=='game over') {
+				endGame();
+			}
 			for (var q=0; q<revealedTiles.length; q++) {
 				if (revealedTiles[q].isBomb && revealedTiles[q].isCrawled) 
-					loseGame();
+					endGame();
 				else
-					updateGuiSquare(revealedTiles[q].x,revealedTiles[q].y,revealedTiles[q].bombCount);
+					showSquareGui(revealedTiles[q].x,revealedTiles[q].y,revealedTiles[q].bombCount);
 			}
 		});
 	}
 
-	var updateGuiSquare = function (x,y,bombCount) {
+	var showSquareGui = function (x,y,bombCount) {
 		var td=document.getElementById('x'+x+'y'+y);
 		td.innerHTML=bombCount;
 		td.setAttribute('class','checked');
 	}
 
-	var loseGame = function () {
+	var endGame = function () {
 		var allTiles = minePuzzleBoard;
+		var gameWon=true;
 		for (var t=0; t<size; t++) {
 			for (var u=0; u<size; u++) {
 				if (allTiles[t][u].isBomb && allTiles[t][u].isCrawled) {
 					var td=document.getElementById('x'+t+'y'+u);
 					td.innerHTML=allTiles[t][u].bombCount;
 					td.setAttribute('class','explode');
+					gameWon=false;
 				}
-				else updateGuiSquare(t,u,allTiles[t][u].bombCount);
+				else showSquareGui(t,u,allTiles[t][u].bombCount);
 			}
 		}
+		if (gameWon==true) {
+			alert('You won!')
+		}
+		else {
+			alert('Uh oh! You were bombed.');	
+		}
+		
 	}
 
 	function makeGui() {

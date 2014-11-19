@@ -25,14 +25,14 @@ var minePuzzleGame = function (dimension,x,y) {
 		//console.log('result is '+result);
 		console.log(minePuzzleBoard);
 		squareSelected.isCrawled=true;
-		isGameOver();
+		if (isGameWon()==true) {result = 'game over'};
 		return result;
 	}
 
-	var isGameOver = function () {
+	var isGameWon = function () {
 		var placesNotChecked = 0;
-		for (var i=0; i<dimension-1; i++) {
-			for (var j=0; j<dimension-1; j++) {
+		for (var i=0; i<dimension; i++) {
+			for (var j=0; j<dimension; j++) {
 				var checkSquare = minePuzzleBoard[i][j];
 				if (checkSquare.isBomb===false && checkSquare.isCrawled===false) {
 					placesNotChecked += 1;
@@ -40,7 +40,10 @@ var minePuzzleGame = function (dimension,x,y) {
 			}
 		}
 		//console.log('Safe squares remaining: '+placesNotChecked);
-		if (placesNotChecked===0) alert('YOU WON! Play again?');
+		if (placesNotChecked===0) {
+			console.log('winner');
+			return true;
+		};
 	}
 
 	var recurseZeros = function (x,y) {
@@ -75,7 +78,10 @@ var minePuzzleGame = function (dimension,x,y) {
 
 		var arrayWithBombs = function () {
 			var initArray = [];
-			var bombsToGive = 12;
+			var numOfSquares = dimension*dimension;
+			var bombsToGive = Math.floor(numOfSquares*(0.12+(dimension-10)/140)); // ugly, but generates a somewhat scalable bomb ratio
+			console.log('bombs to give '+bombsToGive);
+			console.log('')
 			var k=0;
 			var firstClick = x+''+y;
 			// make empty array with dimensions
@@ -87,8 +93,8 @@ var minePuzzleGame = function (dimension,x,y) {
 			}
 			// add bombs to the array
 			while (k < bombsToGive) {
-				var l = Math.floor(Math.random()*7.999); // random number between 1 and 8
-				var m = Math.floor(Math.random()*7.999); // random number between 1 and 8
+				var l = Math.floor(Math.random()*(dimension-0.001)); // random x coordinate
+				var m = Math.floor(Math.random()*(dimension-0.001)); // random y coordinate
 				var currentPlace = l+''+m;
 
 				if (initArray[l][m].isBomb===true || firstClick===currentPlace) {continue}
