@@ -11,12 +11,19 @@ h1 {
 	line-height: 26px;
 }
 
-.game-title {
-	padding-left: 32px;
+.game-header {
+padding-left: 14px;
+width: 240px;
 }
 
-.button-row {
-	padding-left: 12px;
+#game-title {
+	text-align: center;
+}
+
+#button-row {
+	display: block;
+	position: relative;
+	left: auto;
 }
 
 .start-btn {
@@ -62,6 +69,7 @@ h1 {
 
 #minePuzzle {
 	margin: 10px;
+	display: inline-block;
 }
 
 td {
