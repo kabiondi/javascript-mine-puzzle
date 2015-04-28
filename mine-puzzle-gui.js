@@ -22,7 +22,40 @@ var minePuzzleGui = function (size) {
 	var showSquareGui = function (x,y,bombCount) {
 		var td=document.getElementById('x'+x+'y'+y);
 		td.innerHTML=bombCount;
-		td.setAttribute('class','checked');
+
+		switch (bombCount) {
+			// sets classes in order to color numbers
+			case '*':
+				td.setAttribute('class','bombs-isBomb');
+				break;			
+			case 0:
+				td.setAttribute('class','checked bombs-zero');
+				break;
+			case 1:
+				td.setAttribute('class','checked bombs-one');
+				break;
+			case 2:
+				td.setAttribute('class','checked bombs-two');
+				break;
+			case 3:
+				td.setAttribute('class','checked bombs-three');
+				break;
+			case 4:
+				td.setAttribute('class','checked bombs-four');
+				break;
+			case 5:
+				td.setAttribute('class','checked bombs-five');
+				break;
+			case 6:
+				td.setAttribute('class','checked bombs-six');
+				break;
+			case 7:
+				td.setAttribute('class','checked bombs-seven');
+				break;
+			case 8:
+				td.setAttribute('class','checked bombs-eight');
+				break;
+		}
 	}
 
 	var endGame = function () {
@@ -42,10 +75,6 @@ var minePuzzleGui = function (size) {
 		if (gameWon==true) {
 			alert('You won!')
 		}
-		else {
-			alert('Uh oh! You were bombed.');	
-		}
-		
 	}
 
 	function makeGui() {
