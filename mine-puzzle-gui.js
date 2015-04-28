@@ -22,8 +22,12 @@ var minePuzzleGui = function (size) {
 	var showSquareGui = function (x,y,bombCount) {
 		var td=document.getElementById('x'+x+'y'+y);
 		td.innerHTML=bombCount;
+
 		switch (bombCount) {
-			// sets classes to color numbers
+			// sets classes in order to color numbers
+			case '*':
+				td.setAttribute('class','bombs-isBomb');
+				break;			
 			case 0:
 				td.setAttribute('class','checked bombs-zero');
 				break;
@@ -71,10 +75,6 @@ var minePuzzleGui = function (size) {
 		if (gameWon==true) {
 			alert('You won!')
 		}
-		else {
-			alert('Uh oh! You were bombed.');	
-		}
-		
 	}
 
 	function makeGui() {
