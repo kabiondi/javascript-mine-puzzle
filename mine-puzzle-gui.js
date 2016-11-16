@@ -25,7 +25,7 @@ var minePuzzleGui = function (size) {
 
 		switch (bombCount) {
 			// sets classes in order to color numbers
-			case '*':
+			case '':
 				td.setAttribute('class','bombs-isBomb');
 				break;			
 			case 0:
@@ -79,7 +79,10 @@ var minePuzzleGui = function (size) {
 
 	function makeGui() {
 
-		var minePuzzle = document.getElementById('minePuzzle');
+		var minePuzzleStyle = document.getElementById('minePuzzle').style;
+		minePuzzleStyle.display = "inline-block";
+
+		var tableBorder = document.getElementById('table-border');
 		if (document.getElementById('gameTable')) {
 			// clear out gameTable if one exists
 			var clearMinePuzzle = document.getElementById('gameTable');
@@ -89,7 +92,7 @@ var minePuzzleGui = function (size) {
 
 		var table = document.createElement('table');
 		table.setAttribute('id','gameTable');
-		minePuzzle.appendChild(table);
+		tableBorder.appendChild(table);
 
 		var tbody = document.createElement('tbody');
 		table.appendChild(tbody);

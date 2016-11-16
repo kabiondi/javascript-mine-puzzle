@@ -1,17 +1,45 @@
 html {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
 }
 body {
-	background-color: #ddd;
+	margin: 0;
+	padding: 0;
+	height: auto !important;
+	width: 100%;
+	background-color: #1f7e80;
 }
 h1 {
-
+	font-family: trebuchet ms;
+	display: inline-block;
+	color: white;
+	margin: 15px 0 20px;
 	font-style: normal;
 	font-variant: normal;
 	font-weight: 500;
 	line-height: 26px;
 }
-
+#page-wrap {
+	min-height: 100%;
+	margin-bottom: -20px;
+}
+#icons {
+	background: url(./icons.gif) no-repeat left top;
+	height: 260px;
+	width: 100px;
+	position: absolute;
+	top: 20px;
+	left: 5px;
+	opacity: .92;
+}
+#page-wrap:after {
+	content: "";
+	display: block;
+	height: 20px;
+}
 .game-header {
 width: 100%;
 text-align: center;
@@ -30,16 +58,31 @@ text-align: center;
 }
 
 .start-btn {
-	background: #aaa;
+	position: relative;
+	background-color: #c1c1c1;
+	display: inline-block;
+	overflow: hidden;
+	height: 22px;
 	padding: 5px;
+	padding-left: 38px;
 	border: 2px solid;
 	border-color: #eee #666 #666 #eee;
 	text-decoration: none;
 	color: #555;
 	font-weight: 500;
 }
+.win95 {
+	display: inline-block;
+	background: url(./start.png) no-repeat -7px;
+	background-size: 100px;
+	padding-left: 35px;
+	height: 35px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
 .start-btn:hover {
-	background-color:#bbb;
+	/*background-color:#bbb;*/
 }
 .start-btn:active {
 	position:relative;
@@ -47,18 +90,100 @@ text-align: center;
 }
 
 #minePuzzle {
-	margin-top: 10px;
+	margin-top: 20px;
 	width: 100%;
 	display: inline-block;
 	text-align: center;
 }
+#game-outline {
+	border: 2px solid #135cbb;
+	border-radius: 6px;
+	display: inline-block;
+}
+#game-window {
+	padding: 0 4px 4px;
+	background-color: #176ede;
+	display: inline-block;
+	/*border-radius: 4px;*/
+}
+#window-header {
+	position: relative;
+	text-align: left;
+}
+#mine {
+	text-align: left;
+	background: url(mine.webp) no-repeat left;
+	background-size: 25px;
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	top: -3px;
+	left: 0;
+}
+#window-header p {
+	color: white;
+	margin: 10px 0 10px 35px;
+	font-family: trebuchet ms;
+	text-shadow: 2px 2px #333;
+}
+#options {
+	background-color: #eae3d9;
+	display: inline-block;
+}
+#options-bar {
+	border-top: 2px solid #135cbb;
+	text-align: left;
+}
+#options-bar div {
+	padding: 5px;
+	display: inline-block;
+	cursor: pointer;
+}
+#options-bar div span {
+	text-decoration: underline;
+}
+#game-border {
+	display: inline-block;
+	padding: 5px 5px 2px;
+	background-color: white;
+}
+#scoreBorder {
+	width: 100%;
+	padding: 9px 0 0;
+	background-color: #bbb;
+}
+#scoreboard {
+	background-color: white;
+	border: 4px solid;
+	border-color: #666 #eee #eee #666;
+	background-color: #bbb;
+	margin: 0 9px;
+	height: 29px;
+}
+#face {
+	height: 25px;
+	width: 25px;
+	background: url(./face-sprite.jpg) no-repeat left top;
+	background-size: 200%;
+	margin: 2px auto 0;
+	cursor: pointer;
+}
+#face:active {
+	background-position: -23px 1px;
+}
+#table-border {
+	display: inline-block;
+	padding: 9px;
+	background-color: #bbb;
+}
 #gameTable {
-	margin-top: 10px;
 	font-family: Impact, Haettenschweiler, 'Franklin Gothic Bold', Charcoal, 'Helvetica Inserat', 'Bitstream Vera Sans Bold', 'Arial Black', 'sans serif';
+	font-size: 15px;
 	font-weight: 900;
 	margin-left: auto;
 	margin-right: auto;
-	border: 10px solid #999;
+	border: 4px solid;
+	border-color: #666 #eee #eee #666;
 }
 table {
 	border-spacing: 0;
@@ -83,6 +208,8 @@ td {
 	border-color: #999;
 }
 .bombs-isBomb {
+	background: url(./numbers.jpg) no-repeat -44px -2px;
+	background-size: 85px;
 	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 }
 .bombs-zero {
@@ -116,3 +243,33 @@ td {
 	background-color: red;
 	font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 }
+#footer {
+	display: block;
+	background-color: #b1b1b1;
+	border-top: 1px solid #e2e2e2;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 32px;
+}
+#footer-start {
+	display: inline-block;
+	background: url(./start.png) no-repeat left;
+	background-size: 100%;
+	width: 70px;
+	height: 32px;
+	margin-left: 3px;
+}
+#footer-time {
+	position: absolute;
+	display: inline-block;
+	right: 8px;
+	height: 21px;
+	border: 1px solid;
+	border-color: #666 #eee #eee #666;
+	margin-top: 3px;
+	padding: 3px 8px 0;
+}
+
+
+

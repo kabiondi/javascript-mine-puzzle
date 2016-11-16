@@ -9,14 +9,44 @@
 </head>
 
 <body>
-	<div class="game-header">
-		<div id="game-title"><h1>Minesweeper</h1></div>
-		<div id="button-row">
-			<a href="#" class="start-btn" onclick="minePuzzleGui(10)">EASY</a>
-			<a href="#" class="start-btn" onclick="minePuzzleGui(16)">MEDIUM</a>
-			<a href="#" class="start-btn" onclick="minePuzzleGui(22)">HARD</a>
+	<div id="page-wrap">
+		<div id="icons"></div>
+		<div class="game-header">
+			<div id="game-title"><h1>Minesweeper</h1></div>
+			<div id="button-row">
+				<a href="#" class="start-btn" onclick="minePuzzleGui(10)"><div class="win95"></div>Easy</a>
+				<a href="#" class="start-btn" onclick="minePuzzleGui(16)"><div class="win95"></div>Medium</a>
+				<a href="#" class="start-btn" onclick="minePuzzleGui(21)"><div class="win95"></div>Hard</a>
+			</div>
+		</div>
+		<div id='minePuzzle' style="display:none;">
+			<div id="game-outline">
+				<div id="game-window">
+					<div id="window-header">
+						<div id="mine"></div>
+						<p>Minesweeper</p>
+					</div>
+					<div id="options">
+						<div id="options-bar">
+							<div id="game-option"><span>G</span>ame</div>
+							<div id="help-option"><span>H</span>elp</div>
+						</div>
+						<div id="game-border">
+							<div id="scoreBorder">
+								<div id="scoreboard">
+									<div id="face" onclick="minePuzzleGui(16)"></div>
+								</div>
+							</div>
+							<div id="table-border"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div id='minePuzzle'></div>
+	<div id="footer">
+		<div id="footer-start"></div>
+		<div id="footer-time">1:22 PM</div>
+	</div>
 </body>
 </html>

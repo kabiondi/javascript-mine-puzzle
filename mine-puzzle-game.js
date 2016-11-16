@@ -99,7 +99,7 @@ var minePuzzleGame = function (dimension,x,y) {
 
 				if (initArray[l][m].isBomb===true || firstClick===currentPlace) {continue}
 				initArray[l][m].isBomb=true;
-				initArray[l][m].bombCount='*';
+				initArray[l][m].bombCount='';
 				k++;
 			}
 			return initArray;
